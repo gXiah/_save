@@ -15,7 +15,6 @@ Installation
 Download
 ********
 Clone this repository into the directory of your choice
-
 ::
     $ git clone https://github.com/gXiah/_save
     $ cd _save
