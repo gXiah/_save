@@ -38,10 +38,11 @@ To temporarily add it to your PATH :
     $ export  PATH=$(pwd):$PATH
     
 To permanently add it for your personal use, copy the path or the directory
- in which ``_save``  is located.
+in which ``_save``  is located.
 ::
     $ echo "export PATH=$(pwd):$PATH" >> ~/.bashrc
     $ source ~/.bashrc
+
 This will append the new PATH value to your ~/.bashrc file (and source it for an
 imediate availability)
 
@@ -89,5 +90,5 @@ will show the existing categories (if any)
 Exceptions
 ----------
 
-``$ _save `` alone will exit 2 and show the general syntaxe
+``$ _save`` alone will exit 2 and show the general syntaxe
 
