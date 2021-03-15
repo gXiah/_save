@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# AUTOCOMPLETION for command '_save'
+#
+# Looks for files in ${data}, and autocompletes with their names
+
+data_path=./data
+
+if [ ! -z "$(ls -A "$data_path")" ]; then
+    complete -W "$(ls -d ${data_path})" _save
+else
+    echo "'complete' failed for '_save' command,"
+    echo "dir '${data_path} is empty."
+fi

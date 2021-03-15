@@ -1,0 +1,127 @@
+#!/bin/bash
+
+# @author Adam Aquesbi <adam.aquesbi@outlook.com>
+# March 14th, 2021
+#
+#
+# Command blueprint
+# 
+#     _save <category> <value>
+#
+
+DEFAULT_CATEGORY=anonymous
+
+category=$1
+data=$2
+
+
+
+########################################
+#
+#   SAVE PATH ROOT
+#
+########################################
+# Root for save path
+save_path_root=~/Documents/_save-utility
+########################################
+
+
+
+# Command '_save' general data dir
+sub_utils_dir=${save_path_root}/_save
+
+# Data is saved in this dir
+data_save_dir=${sub_utils_dir}/data
+
+if [ ! -d "$save_path_root" ]; then
+    echo "Creating root dir"
+    mkdir "$save_path_root"
+fi
+
+if [ ! -d "$sub_utils_dir" ]; then
+    echo "Creating root dir"
+    mkdir "$sub_utils_dir"
+fi
+
+if [ ! -d "$data_save_dir" ]; then
+    echo "Creating root dir"
+    mkdir "$data_save_dir"
+fi
+
+
+# Warning #
+#
+#   If data argument is missing, and category is not
+#
+#   We consider the user's input as the data, and set 
+#   the category to the default category value: ${DEFAULT_CATEGORY}
+#
+# 
+if [ -z "$data" ] && [ ! -z "$category" ]; then
+    data=${category}
+    category=${DEFAULT_CATEGORY}
+fi
+
+# Exception #
+#
+#   If data argument is missing;
+#
+# exit 2
+if [ -z "$data" ] && [ -z "$category" ]; then
+    echo "/!\ _save ERROR: No data given; the syntaxe is:"
+    echo ""
+    echo "                 _save <category> <data>  "
+    echo "exit 2"
+    exit 2
+fi
+
+
+# Constructing the log file route
+# 
+# The log file path is : 
+#       ${data_save_dir}/<category>/<date(%m-%d-%Y)>.log
+#
+
+formated_date=$(date +"%d-%m-%Y")
+log_file_dir=${data_save_dir}/${category}
+log_file_path=${log_file_dir}/${formated_date}.log
+
+
+
+echo "================"
+echo "     SAVING     "
+echo " ---------------"
+echo " ${data}     "
+echo " ---------------"
+echo "to: ${log_file_path}"
+echo "in: < ${category} >"
+echo "================"
+
+
+# ===========
+# Saving step
+# ===========
+
+# Creates category dir if it doesn't exist
+if [ ! -d "$log_file_dir" ]; then
+    mkdir "$log_file_dir"
+    echo " Created category '${category}'"
+    echo " \_____ At ${log_file_dir}"
+fi
+
+
+# Creates log file if it doesn't exists
+if [ ! -f "$log_file_path" ]; then
+    touch "$log_file_path"
+    echo " Log file created"
+    echo " \_____ At ${log_file_path}"
+fi
+
+
+echo "$data" >> "$log_file_path"
+
+
+
+
+
+
