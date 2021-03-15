@@ -67,21 +67,23 @@ Usage
 -----
 *Tested On Ubuntu*
 
-Basic usage
+**Basic usage**
 ::
     $ _save <category> <entry>
 
 Will save the entry to a newly created category directory
 
 
-No-category entries
+
+**No-category entries**
 ::
     $ _save <entry>
 
 Will save the entry to a default category (see ``$DEFAULT_CATEGORY``).
 
 
-Auto-completion
+
+**Auto-completion**
 ::
     $ _save <tab><tab> 
 will show the existing categories (if any)
